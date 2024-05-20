@@ -14,7 +14,7 @@ const formattedDate = now.toLocaleString(DateTime.DATETIME_MED);
 console.log(formattedDate);
 
 redisClient.connect();
-const server = app.listenToPort(PORT, NODE_ENV);
+const server = app.listenToPort(4000, NODE_ENV);
 
 (async () => {
 	await agenda.start();
