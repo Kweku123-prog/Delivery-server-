@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { STATUS_CODES } from "../../../constants";
 import { adminOpsForVendorsService } from "../services/admin.vendorsService";
 import { handleErrorResponse } from "../../../utils";
+import { vendorService } from "../../vendors";
 
 class AdminOpsForVendorsController {
 	async approveVendor(req: Request, res: Response) {
@@ -62,6 +63,22 @@ class AdminOpsForVendorsController {
 		} catch (error: any) {
 			res.status(error.status || STATUS_CODES.SERVER_ERROR).json({
 				message: "Failed to get vendor",
+				error: error.message || "Server error",
+			});
+		}
+	}
+
+
+
+	async deleteVendor(req: Request, res: Response) {
+		try {
+			await adminOpsForVendorsService.deleteVendor(req.params.vendorId);
+			res.status(STATUS_CODES.OK).json({
+				message: "Vendor deleted successfully",
+			});
+		} catch (error: any) {
+			res.status(error.status || STATUS_CODES.SERVER_ERROR).json({
+				message: "Error deleting Vendor",
 				error: error.message || "Server error",
 			});
 		}

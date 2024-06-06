@@ -59,6 +59,21 @@ class AdminOpsForVendorsService {
     vendor.approvalStatus = AccountApprovalStatus.APPROVED;
     await vendor.save();
   }
+
+
+  async deleteVendor(vendorId: string) {
+		const result = await Vendor.deleteOne({
+			_id: vendorId,
+		
+		});
+
+		if (result.deletedCount === 0) {
+			throw new HandleException(
+				STATUS_CODES.NOT_FOUND,
+				"Vendor  not found"
+			);
+		}
+	}
 }
 
 export const adminOpsForVendorsService = new AdminOpsForVendorsService();

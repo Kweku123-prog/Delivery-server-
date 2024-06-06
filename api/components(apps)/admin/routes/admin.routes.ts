@@ -29,7 +29,7 @@ class AdminRoutes {
 		this.router.use("/maku", adminOpsMakuRoutes.router);
 		this.router.use("/shops", adminOpsShopsRoutes.router);
 		this.router.use("/customers", adminOpsCustomersRoutes.router);
-		this.router.use("/vendors", adminOpsVendorsRoutes.router);
+		this.router.use("/vendors", adminOpsVendorsRoutes.router); 
 		this.router.use("/orders", adminOpsOrdersRoutes.router);
 		this.router.use("/drivers", adminOpsDriversRoutes.router);
 		this.router.use("/riders", adminOpsRidersRoutes.router);

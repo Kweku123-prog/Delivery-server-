@@ -14,7 +14,7 @@ class AdminAuthController {
 		try {
 			const credentials = new AdminModel(req.body);
 
-			await validateSignupCredentials(credentials);
+			// await validateSignupCredentials(credentials);
 
 			await adminAuthService.signup(credentials);
 

@@ -19,6 +19,8 @@ class AdminOpsVendorsRoutes {
     this.router
       .route("/:vendorId/reject")
       .patch(adminOpsForVendorsController.rejectVendor);
+
+      this.router.route("/:vendorId").delete(adminOpsForVendorsController.deleteVendor);
   }
 }
 

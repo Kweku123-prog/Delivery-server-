@@ -51,7 +51,7 @@ class AdminDriversService {
 		const options = {
 			page,
 			limit: 15,
-			select: "firstName lastName email phoneNumber accountStatus createdAt",
+			select: "firstName lastName email phoneNumber accountStatus approvalStatus createdAt",
 			lean: true,
 			leanWithId: false,
 			sort: { createdAt: -1 },

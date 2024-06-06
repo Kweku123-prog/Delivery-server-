@@ -116,6 +116,27 @@ class CustomerService {
 		}
 	}
 
+
+	async getAllCustomers() {
+		try {
+			const customers = await Customer.find({
+				deleted: { $in: [false, null] },
+			}).select("-__v -password -updatedAt -deleted");
+	
+			if (!customers.length) {
+				throw new HandleException(
+					STATUS_CODES.NOT_FOUND,
+					"No customer accounts found"
+				);
+			}
+	
+			return customers;
+		} catch (error: any) {
+			throw new HandleException(error.status, error.message);
+		}
+	}
+	
+
 	async getMe(id: string) {
 		try {
 			const customer = await Customer.findOne({

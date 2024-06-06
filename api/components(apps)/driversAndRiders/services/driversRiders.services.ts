@@ -130,7 +130,28 @@ class DriverRiderService {
       throw new HandleException(error.staus, error.message);
     }
   }
+  async getALLDrivers() {
+    try {
+      const driverRider = await DriverRider.find()
+        .select(
+          `firstName lastName middleName email phoneNumber photo 
+      vehicle licenseNumber rating street city state`
+        )
+        .populate({ path: "vehicleType", select: "vehicleType" })
+        .lean();
 
+      if (driverRider.length>0) {
+        return driverRider;
+      }
+
+      throw new HandleException(
+        STATUS_CODES.NOT_FOUND,
+        "Drivers/riders Not found"
+      );
+    } catch (error: any) {
+      throw new HandleException(error.staus, error.message);
+    }
+  }
   async rateDriverOrRider(id: string, rating: number, accountType: string) {
     try {
       const driverRider = await DriverRider.findOne({

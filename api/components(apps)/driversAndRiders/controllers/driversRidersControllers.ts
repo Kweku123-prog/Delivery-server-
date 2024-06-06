@@ -101,6 +101,20 @@ class DriversRidersController {
     }
   }
 
+
+  async getAllDrivers(req: Request, res: Response) {
+    const id = (req as any).user._id;
+    try {
+      const driverRider = await driverRiderService.getALLDrivers();
+      res.status(STATUS_CODES.OK).json({
+        message: `Successful`,
+        data: { driverRider },
+      });
+    } catch (error: any) {
+      handleErrorResponse(res, error);
+    }
+  }
+
   async updateProfile(req: Request, res: Response) {
     const id = (req as any).user._id;
     try {

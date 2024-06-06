@@ -68,7 +68,18 @@ class CustomerController {
 			handleErrorResponse(res, error);
 		}
 	}
-
+async getAllCustomers(req: Request, res: Response){
+	try {
+          const customers=await customerService.getAllCustomers();
+		  res.status(STATUS_CODES.OK).json({
+			message: "Fetched custommer profile",
+			data: { customers },
+		});
+	}
+	catch (error: any) {
+		handleErrorResponse(res, error);
+	}
+}
 	async getMe(req: Request, res: Response) {
 		try {
 			const customerId = (req as any).user._id;

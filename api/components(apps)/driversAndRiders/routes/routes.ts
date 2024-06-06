@@ -20,6 +20,7 @@ class DriversRidesrRoutes {
       driversRidersController.rateDriverOrRider
     );
     this.router.route("/me").get(driversRidersController.getMe);
+    this.router.route("/getAllDrivers").get(driversRidersController.getAllDrivers);
     this.router
       .route("/me/update")
       .patch(driversRidersController.updateProfile);
