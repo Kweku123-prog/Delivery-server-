@@ -60,14 +60,14 @@ class CustomerController {
 
 			const accessToken = jwtUtils.generateToken(payload, "1h");
 			const refreshToken = jwtUtils.generateToken(payload, "14d");
-			const customerMe = await customerService.getMe( customer._id);
+			// const customerMe = await customerService.getMe( customer._id);
 			res.status(200).json({
 				message: "Successfully logged in",
 				data: {
 					_id: customer._id,
 					accessToken,
 					refreshToken,
-					customerMe,
+				
 				},
 			});
 		} catch (error: any) {
