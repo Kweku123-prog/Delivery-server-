@@ -35,7 +35,7 @@ class CustomerService {
 				email: payload.email,
 				phoneNumber: payload.phoneNumber,
 				password: payload.password,
-				profilePhoto: payload.photo,
+				// profilePhoto: payload.photo,
 			});
 			const savedCustomer = await newCustomer.save();
 			return savedCustomer;
