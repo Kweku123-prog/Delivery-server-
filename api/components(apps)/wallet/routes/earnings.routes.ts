@@ -9,7 +9,7 @@ class EarningsRoutes {
     this.initializeRoutes()
   }
   private async initializeRoutes() {
-    this.router.use(jwtUtils.verifyTokenMiddleware)
+    // this.router.use(jwtUtils.verifyTokenMiddleware)
     this.router.route("/").get(earningController.getEarnings);
   }
 }
