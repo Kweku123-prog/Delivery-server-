@@ -10,7 +10,7 @@ class WalletRoutes {
     this.initializeRoutes();
   }
   private async initializeRoutes() {
-    this.router.use(jwtUtils.verifyTokenMiddleware);
+    // this.router.use(jwtUtils.verifyTokenMiddleware);
     this.router
       .route("/add-withdrawal-details")
       .patch(walletController.addWithDrawalDetails);
