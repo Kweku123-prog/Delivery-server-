@@ -15,7 +15,7 @@ import { messengerServiceRoutes } from "./components(apps)/messenger";
 import { earningsRoutes, walletRoutes } from "./components(apps)/wallet";
 import { transactionsRoutes } from "./components(apps)/transacctions";
 import { houseRentalRoutes } from "./components(apps)/houseRental";
-import { earnRoute, earnRoutes } from "./components(apps)/driverearnings/routes/wallet_route";
+import { earnRoutes } from "./components(apps)/driverearnings/routes/wallet_route";
 
 class Routes {
   /*
