@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { saveEarnings } from '../controller/wallet_controller';
+import { getEarningsByDriverId, saveEarnings ,updateEarningsByDriverId } from '../controller/wallet_controller';
 import { jwtUtils } from "../../../utils";
 
 class EarnRoute {
@@ -9,8 +9,9 @@ class EarnRoute {
     this.initializeRoutes();
   }
   public initializeRoutes() {
-    this.router.route('/').post(saveEarnings)
-    
+    this.router.route('/').post(saveEarnings);
+    this.router.get('/earnings/:driverId', getEarningsByDriverId);
+    this.router.put('/earnings/update/:driverId', updateEarningsByDriverId);
    
   }
 }

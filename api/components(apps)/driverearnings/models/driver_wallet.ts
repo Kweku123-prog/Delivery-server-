@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { stringsUtils } from '../../../utils';
 
 const EarningsSchema = new mongoose.Schema({
-  driverId: { 
+  id: { 
 
 	type: String,
 			required: true,
@@ -11,11 +11,12 @@ const EarningsSchema = new mongoose.Schema({
 
 
    },
+   driverId: { type: String, required: true },
   
   earnings: { type: Number, required: true },
   date: { type: String, required: true },
 });
 
-const Earnings = mongoose.model('Earnings', EarningsSchema);
+const Earning = mongoose.model('Earning', EarningsSchema);
 
-export default Earnings;
+export default Earning;
