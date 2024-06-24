@@ -15,7 +15,7 @@ import { messengerServiceRoutes } from "./components(apps)/messenger";
 import { earningsRoutes, walletRoutes } from "./components(apps)/wallet";
 import { transactionsRoutes } from "./components(apps)/transacctions";
 import { houseRentalRoutes } from "./components(apps)/houseRental";
-import { earnRoute } from "./components(apps)/driverearnings/routes/wallet_route";
+import { earnRoute, earnRoutes } from "./components(apps)/driverearnings/routes/wallet_route";
 
 class Routes {
   /*
@@ -50,7 +50,7 @@ class Routes {
     this.router.use("/house-rental", houseRentalRoutes.router);
 
     this.router.use("/admin", adminRoutes.router);
-    this.router.use("/earn",earnRoute.router );
+    this.router.use("/earn",earnRoutes.router );
 
   }
 }

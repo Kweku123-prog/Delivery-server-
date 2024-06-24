@@ -9,10 +9,10 @@ class EarnRoute {
     this.initializeRoutes();
   }
   public initializeRoutes() {
-    this.router.route('/earnings').post(saveEarnings)
+    this.router.route('/').post(saveEarnings)
     
    
   }
 }
 
-export const earnRoute = new EarnRoute()
+export const earnRoutes = new EarnRoute()
