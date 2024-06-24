@@ -7,6 +7,7 @@ import { app } from "./app/app";
 import { PORT, NODE_ENV } from "./config/secrets.config";
 import { WebSocket, agenda, redisClient } from "./services";
 import { dateTimeSettings } from "./config";
+import { earningsRoutes } from "./components(apps)/wallet/routes/earnings.routes";
 
 const now = DateTime.now().setLocale(dateTimeSettings.defaultLocale);
 const formattedDate = now.toLocaleString(DateTime.DATETIME_MED);

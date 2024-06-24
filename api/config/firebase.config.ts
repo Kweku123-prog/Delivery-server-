@@ -15,7 +15,7 @@ import { serviceAccountKey } from "./fireBaseServiceAccount.config";
 // const serviceAccountJson = fs.readFileSync(filePath, 'utf8');
 
 
-// const serviceAccount = JSON.parse(serviceAccountKey)
+//const serviceAccount = JSON.parse(serviceAccountKey)
 const serviceKey = JSON.stringify(serviceAccountKey);
 
 export const firebaseAdmin = admin.initializeApp({
