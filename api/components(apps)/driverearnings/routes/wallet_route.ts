@@ -2,7 +2,7 @@ import { Router } from "express";
 import { saveEarnings } from '../controller/wallet_controller';
 import { jwtUtils } from "../../../utils";
 
-class MakuRoutes {
+class EarnRoute {
   public router = Router();
 
   constructor() {
@@ -15,4 +15,4 @@ class MakuRoutes {
   }
 }
 
-export const makuRoutes = new MakuRoutes()
+export const earnRoute = new EarnRoute()
