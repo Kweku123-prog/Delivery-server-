@@ -22,6 +22,7 @@ class CustomerController {
 			const payload = {
 				phoneNumber: customer.phoneNumber,
 				_id: customer._id,
+				
 			};
 			const accessToken = jwtUtils.generateToken(payload, "1h");
 			const refreshToken = jwtUtils.generateToken(payload, "14d");

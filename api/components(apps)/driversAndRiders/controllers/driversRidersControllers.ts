@@ -35,6 +35,8 @@ class DriversRidersController {
         phoneNumber: driverRider.phoneNumber,
         _id: driverRider._id,
       };
+
+      const driverRiderMe =await driverRiderService.getMe(driverRider._id);
       const accessToken = jwtUtils.generateToken(payload, "1h");
       const refreshToken = jwtUtils.generateToken(payload, "14d");
 
@@ -47,6 +49,7 @@ class DriversRidersController {
           },
           accessToken,
           refreshToken,
+          driverRiderMe
         },
       });
     } catch (error: any) {
@@ -60,6 +63,7 @@ class DriversRidersController {
 
     try {
       await validateDriversAndRiders.login(req.body);
+     
       const driverRider = await driverRiderService.login(
         {
           phoneNumber,
@@ -67,7 +71,7 @@ class DriversRidersController {
         },
         accountType
       );
-
+      const driverRiderMe =await driverRiderService.getMe(driverRider._id);
       const payload = {
         phoneNumber: driverRider.phoneNumber,
         _id: driverRider._id,
@@ -81,6 +85,7 @@ class DriversRidersController {
           ...driverRider,
           accessToken,
           refreshToken,
+          driverRiderMe
         },
       });
     } catch (error: any) {
