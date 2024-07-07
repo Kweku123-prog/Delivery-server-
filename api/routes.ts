@@ -16,6 +16,7 @@ import { earningsRoutes, walletRoutes } from "./components(apps)/wallet";
 import { transactionsRoutes } from "./components(apps)/transacctions";
 import { houseRentalRoutes } from "./components(apps)/houseRental";
 import { earnRoutes } from "./components(apps)/driverearnings/routes/wallet_route";
+import { constantsRoutes } from "./components(apps)/rideSetttings/routes/settings_routes";
 
 class Routes {
   /*
@@ -51,6 +52,8 @@ class Routes {
 
     this.router.use("/admin", adminRoutes.router);
     this.router.use("/earn",earnRoutes.router );
+    this.router.use("/constants",constantsRoutes.router );
+
 
   }
 }
