@@ -44,7 +44,7 @@ const driverRiderSchema = new Schema<IDriverRider>(
     licenseNumber: { type: String, required: true },
     vehicleType: { type: String, ref: "MakuVehicleType", required: true },
     vehicle: { type: String, required: true },
-    vehicleInsurancePhoto: { type: String, required: true },
+    vehicleInsurancePhoto: { type: String, required: false },
     govtIdPhoto: { type: [String, String], required: true },
     accountType: {
       type: String,

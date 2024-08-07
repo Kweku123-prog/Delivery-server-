@@ -113,7 +113,7 @@ class DriverRiderService {
       const driverRider = await DriverRider.findById(id)
         .select(
           `firstName lastName middleName email phoneNumber photo 
-      vehicle licenseNumber rating street city state`
+      vehicle licenseNumber rating street city state approvalStatus`
         )
         .populate({ path: "vehicleType", select: "vehicleType" })
         .lean();
