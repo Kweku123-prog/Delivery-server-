@@ -37,7 +37,7 @@ const driverRiderSchema = new Schema<IDriverRider>(
     state: { type: String, required: true },
     country: {
       type: String,
-      required: true,
+      required: false,
       set: stringsUtils.toLowerCaseSetter,
     },
     postalCode: String,
