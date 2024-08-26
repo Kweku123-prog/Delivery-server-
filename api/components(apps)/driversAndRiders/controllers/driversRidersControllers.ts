@@ -17,7 +17,7 @@ class DriversRidersController {
         });
       }
 
-      // await validateDriversAndRiders.signup(req.body);
+     await validateDriversAndRiders.signup(req.body);
 
       await Promise.all([
         userService.isEmailTaken(req.body.email),

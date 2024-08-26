@@ -11,7 +11,7 @@ class ValidateCustomers {
 			email: Joi.string().required().label("Email"),
 			phoneNumber: Joi.string().required().label("Phone number"),
 			password: Joi.string().required().label("Password"),
-			// profilePhoto: Joi.string().required().label("Photo"),
+			profilePhoto: Joi.string().required().label("Photo"),
 		});
 
 		const { error } = signUpSchema.validate(payload, {

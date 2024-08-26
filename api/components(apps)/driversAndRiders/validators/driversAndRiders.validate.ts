@@ -12,8 +12,8 @@ class ValidateDriversAndRiders {
       phoneNumber: Joi.string().required().label("Phone number"),
       password: Joi.string().required().label("Password"),
       photo: Joi.string().required().label("Photo"),
-      vehicleType: Joi.string().required().label("Vehicle type"),
-      vehicle: Joi.string().required().label("Vehicle"),
+      // vehicleType: Joi.required().label("Vehicle type"),
+      vehicle: Joi.string().required().label("Enter Vehicle model"),
       vehicleInsurancePhoto: Joi.string()
         .required()
         .label("vehicle insurance photo"),
