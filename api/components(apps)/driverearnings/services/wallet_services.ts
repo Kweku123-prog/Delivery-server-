@@ -13,7 +13,9 @@ async getAllDriversWallet() {
     try {
         const earining = await MyMoneyModel.find(
        
-        );
+        )    .select("-__v ")
+        .lean();
+
 
         if (!earining.length) {
             throw new HandleException(
@@ -42,6 +44,41 @@ try {
 }
 
 }
+
+
+async getWalletbyId(id: string){
+    const query={
+        driverId:id,
+    };
+    const wallet = await MyMoneyModel.find(query)   .select("-__v ")
+    .lean();
+
+     
+
+    if (!wallet )
+        throw new HandleException(
+            STATUS_CODES.NOT_FOUND,
+            "Wallet not found"
+        );
+
+    return wallet;
+}
+
+
+async getAllWallet() {
+    const wallet = await MyMoneyModel.find()
+        .select("-__v ")
+        .lean();
+
+    if (!wallet )
+        throw new HandleException(
+            STATUS_CODES.NOT_FOUND,
+            "No Wallet  found"
+        );
+
+    return wallet;
+}
+
 }
 
     

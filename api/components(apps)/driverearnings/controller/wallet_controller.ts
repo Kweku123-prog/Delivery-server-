@@ -66,7 +66,20 @@ export const createDriverWallet  =async(req:Request,res:Response)=>{
   }
 }
 
-
+///Get Driver wallet 
+export const getDriverWalletById =async (req:Request,res:Response)=>{
+  try {
+    const wallet =await walletService2.getWalletbyId(req.params.id);
+    return res.status(STATUS_CODES.OK).json({
+      message:'success',
+      data:wallet});
+  }catch (error: any) {
+    return res.status(error.status || STATUS_CODES.SERVER_ERROR).json({
+      error: true,
+      message: error.message || "Server error",
+    });
+  }
+}
 
 export const getEarningsByDriverId = async (req: Request, res: Response) => {
     const { driverId } = req.params;
@@ -78,12 +91,29 @@ export const getEarningsByDriverId = async (req: Request, res: Response) => {
         return res.status(404).json({ message: 'No earnings found for this driver' });
       }
   
-      res.status(200).json(earnings);
+      res.status(200).json({
+        earnings
+      });
     } catch (error) {
       res.status(500).json({ error: 'Failed to retrieve earnings data' });
     }
   };
 
+//Get all wallets
+
+export const getAllDriverWallet =async (req:Request,res:Response)=>{
+  try {
+    const wallet =await walletService2.getAllWallet();
+    return res.status(STATUS_CODES.OK).json({
+      message:'success',
+      data:wallet});
+  }catch (error: any) {
+    return res.status(error.status || STATUS_CODES.SERVER_ERROR).json({
+      error: true,
+      message: error.message || "Server error",
+    });
+  }
+}
 
 
 export const updateEarningsByDriverId = async (req: Request, res: Response) => {
