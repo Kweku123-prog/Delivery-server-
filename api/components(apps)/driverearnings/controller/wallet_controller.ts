@@ -1,12 +1,12 @@
 
 import { Request, Response } from 'express';
-import Earnings from '../models/driver_wallet';
-import Earning from '../models/driver_wallet';
+
 import { STATUS_CODES } from '../../../constants';
 import { HandleException, handleErrorResponse } from '../../../utils';
 
 import { walletService2 } from '../services/wallet_services';
-import MyMoney from '../models/driver_wallet';
+import {MyMoney,MyMoneyModel, validateWalletCredentials} from '../models/driver_wallet';
+import { messaging } from 'firebase-admin';
 
 export const saveEarnings = async (req: Request, res: Response) => {
   const { driverId, earnings, date } = req.body;
@@ -18,7 +18,7 @@ export const saveEarnings = async (req: Request, res: Response) => {
 
   try {
     // Save earnings data to MongoDB
-    const newEarnings = new MyMoney({ driverId, earnings, date });
+    const newEarnings = new MyMoneyModel({ driverId, earnings, date });
     await newEarnings.save();
 
     res.status(201).json({ message: 'Earnings data saved successfully' });
@@ -42,12 +42,37 @@ handleErrorResponse(res, error);
 }
 
 }
+///Create Driver  wallet 
+
+export const createDriverWallet  =async(req:Request,res:Response)=>{
+  try {
+    const wallet =new MyMoneyModel(req.body);
+
+    //todo create validation 
+   await  validateWalletCredentials(wallet);
+  const data  =await  walletService2.createDriverWallet(wallet);
+    return res.status(201).json({
+      error: false,
+      message:"Wallet Created Successfully",
+      data
+
+    });
+  } catch (error:any) {
+    return res.status(error.status || STATUS_CODES.SERVER_ERROR).json({
+      error: true,
+      message: error.message,
+    });
+    
+  }
+}
+
+
 
 export const getEarningsByDriverId = async (req: Request, res: Response) => {
     const { driverId } = req.params;
   
     try {
-      const earnings = await MyMoney.find({ driverId });
+      const earnings = await MyMoneyModel.find({ driverId });
   
       if (earnings.length === 0) {
         return res.status(404).json({ message: 'No earnings found for this driver' });
@@ -71,7 +96,7 @@ export const updateEarningsByDriverId = async (req: Request, res: Response) => {
     }
   
     try {
-      const updatedEarnings = await MyMoney.findOneAndUpdate(
+      const updatedEarnings = await MyMoneyModel.findOneAndUpdate(
         { driverId },
         { earnings },
         { new: true }
@@ -95,7 +120,7 @@ export const updateEarningsByDriverId = async (req: Request, res: Response) => {
    
   
     try {
-      const updatedEarnings = await MyMoney.findOneAndUpdate(
+      const updatedEarnings = await MyMoneyModel.findOneAndUpdate(
         { driverId },
         { bankName,bankCode,accountName,accountNumber },
         { new: true }

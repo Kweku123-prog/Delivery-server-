@@ -39,7 +39,7 @@ class AdminAuthController {
 			await validateSigninCredentials(credentials);
 
 			const admin = await adminAuthService.signin(credentials);
-
+			const  user_id =admin._id;
 			const accessToken = jwtUtils.generateToken(admin, "1h");
 			const refreshToken = jwtUtils.generateToken(admin, "14d");
 
@@ -47,6 +47,7 @@ class AdminAuthController {
 				message: "Authenticated successfully",
 				accessToken,
 				refreshToken,
+				user_id
 			
 				
 				
