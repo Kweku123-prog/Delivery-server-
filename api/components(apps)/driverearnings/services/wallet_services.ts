@@ -29,11 +29,26 @@ async getAllDriversWallet() {
         throw new HandleException(error.status, error.message);
     }
 }
+public static async DoesWalletExist(driverId: string): Promise<boolean> {
+    const data = await MyMoneyModel.findOne({driverId});
 
+    return data != null;
+}
 async createDriverWallet(myMoney: MyMoney): Promise<MyMoney> {
 
 try {
     const model =new MyMoneyModel(myMoney);
+
+    //check if wallet already exist 
+    const driverId =myMoney.driverId
+    const data = await MyMoneyModel.findOne({driverId});
+if(data){
+    throw new HandleException(
+        STATUS_CODES.CONFLICT,
+        "Wallet already Exist for this Driver "
+    );
+}
+
 
     return model.save();
 
@@ -78,6 +93,9 @@ async getAllWallet() {
 
     return wallet;
 }
+
+
+
 
 }
 

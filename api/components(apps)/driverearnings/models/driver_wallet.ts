@@ -15,7 +15,6 @@ const EarningsSchema = new mongoose.Schema({
 
    },
    driverId: { type: String, required: true },
-  
   earnings: { type: Number, required: true },
   bankName: {type:String, required :true}, // For bank names or mobile money service providers
   bankCode: {type:String},

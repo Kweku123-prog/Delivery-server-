@@ -48,9 +48,12 @@ export const createDriverWallet  =async(req:Request,res:Response)=>{
   try {
     const wallet =new MyMoneyModel(req.body);
 
-    //todo create validation 
+    // validation 
    await  validateWalletCredentials(wallet);
+   //Check if wallet already exist 
+   const wallExist =await walletService2.getWalletbyId(req.body.id)
   const data  =await  walletService2.createDriverWallet(wallet);
+  
     return res.status(201).json({
       error: false,
       message:"Wallet Created Successfully",
@@ -64,6 +67,10 @@ export const createDriverWallet  =async(req:Request,res:Response)=>{
     });
     
   }
+
+
+
+
 }
 
 ///Get Driver wallet 
