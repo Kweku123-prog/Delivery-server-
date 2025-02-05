@@ -17,6 +17,66 @@ class MakuService {
     }
   }
 
+  public async getVehicleTypesById(id:String) {
+    try {
+      const vehicleType = await MakuVehicleType.findById(id)
+        .select("-__v")
+        .lean()
+        .exec();
+
+        if(!vehicleType){
+        	throw new HandleException(
+            STATUS_CODES.NOT_FOUND,
+            "Vechicle type not found"
+          );
+        }
+      return vehicleType;
+    } catch (error: any) {
+      throw new HandleException(error.status, error.message);
+    }
+  }
+
+
+  // public async deteletById(id:String) {
+  //   try {
+  //     const vehicleType = await MakuVehicleType.findOne(id)
+  //       .select("-__v")
+  //       .lean()
+  //       .exec();
+
+  //       if(!vehicleType){
+  //       	throw new HandleException(
+  //           STATUS_CODES.NOT_FOUND,
+  //           "Vechicle type not found"
+  //         );
+  //       }
+  //     return vehicleType;
+  //   } catch (error: any) {
+  //     throw new HandleException(error.status, error.message);
+  //   }
+  // }
+
+
+
+  public async updateVehicleType( driverId:String ,payload:any){
+    try {
+      const vehicleType =await MakuVehicleType.findByIdAndUpdate(driverId,{ $set: payload },
+				{ new: true }).select(payload) ;
+
+        if(!vehicleType){
+        	throw new HandleException(
+            STATUS_CODES.NOT_FOUND,
+            "Vechicle type not found"
+          );
+        }
+        return vehicleType;
+
+      
+    } catch (error: any) {
+			throw new HandleException(error.status, error.message);
+		}
+  }
+
   async findNearestDrivers(
     pickUpCoordinates: [number, number],
     pickUpAddress: string,

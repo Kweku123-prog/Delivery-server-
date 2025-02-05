@@ -18,6 +18,41 @@ class MakuController {
     }
   }
 
+  //update makuTypes 
+
+  public async updateVehicleTypes(req:Request ,res:Response){
+  
+try {
+  const vehicleTypes = await makuService.updateVehicleType(req.params.id,req.body);
+  res.status(STATUS_CODES.OK).json({
+    message: "Vechicle Type update  successful",
+    data: vehicleTypes,
+  });
+} catch (error: any) {
+  res.status(error.status || STATUS_CODES.SERVER_ERROR).json({
+    message: "Update failed",
+    error: error.message,
+  });
+}
+  }
+
+//Get Vechicle type by id 
+  public async getVechicleTypeById(req:Request ,res:Response){
+    const { id } = req.params;
+    try {
+      const vehicleType = await makuService.getVehicleTypesById(id);
+      res.status(STATUS_CODES.OK).json({
+        message: " successful",
+        data: vehicleType,
+      });
+    } catch (error: any) {
+      res.status(error.status || STATUS_CODES.SERVER_ERROR).json({
+        message: " failed",
+        error: error.message,
+      });
+    }
+      }
+
   async getTripDetails(req: Request, res: Response) {
     const { tripId } = req.params;
     try {
