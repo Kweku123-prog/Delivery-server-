@@ -78,6 +78,17 @@ class MakuService {
 		}
   }
 
+  public async deleteVehicleType(driverId:string){
+ const result =await MakuVehicleType.deleteOne({ _id: driverId });
+
+ if (result.deletedCount === 0) {
+  throw new HandleException(
+    STATUS_CODES.NOT_FOUND,
+    "Vehicle not found"
+  );
+}
+  }
+
 
   public async createVehicleType(makuVehicleType:any){
     try {

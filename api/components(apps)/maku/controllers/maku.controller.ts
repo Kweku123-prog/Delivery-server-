@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { STATUS_CODES } from "../../../constants";
 import { makuService } from "../services/maku.service";
 import { handleErrorResponse } from "../../../utils";
+import { MakuVehicleType } from "../models/maku.model";
 
 class MakuController {
   public async getVehicleTypes(req: Request, res: Response) {
@@ -33,6 +34,24 @@ class MakuController {
         error: error.message,
       });
     }
+  }
+
+  //delelte Vehicle type
+
+
+  public async deleteVehicleType(req:Request,res:Response){
+try {
+  await makuService.deleteVehicleType(req.params.id);
+  res.status(STATUS_CODES.OK).json({
+    message: "Maku Type deleted successfully",
+  });
+  
+} catch (error: any) {
+  res.status(error.status || STATUS_CODES.SERVER_ERROR).json({
+    message: "Error deleting Maku Type",
+    error: error.message || "Server error",
+  });
+}
   }
 
   //update makuTypes 
