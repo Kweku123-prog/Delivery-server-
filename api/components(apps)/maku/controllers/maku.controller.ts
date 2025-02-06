@@ -18,6 +18,23 @@ class MakuController {
     }
   }
 
+  // create Vehicle Type
+
+  public async createVehicleType(req:Request,res:Response){
+    try {
+      const vehicleType =await makuService.createVehicleType(req.body);
+      res.status(STATUS_CODES.OK).json({
+        message: "Vechicle Type Created  successful",
+        data: vehicleType,
+      });
+    } catch (error :any ) {
+      res.status(error.status || STATUS_CODES.SERVER_ERROR).json({
+        message: "Create failed",
+        error: error.message,
+      });
+    }
+  }
+
   //update makuTypes 
 
   public async updateVehicleTypes(req:Request ,res:Response){

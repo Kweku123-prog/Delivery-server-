@@ -1,6 +1,7 @@
 import { MakuCabStatus, STATUS_CODES } from "../../../constants";
 import { findClosestDriverOrRider } from "../../../services";
 import { HandleException } from "../../../utils";
+import { MyMoney, MyMoneyModel } from "../../driverearnings/models/driver_wallet";
 import { notificationService } from "../../notifications";
 import { MakuTrip, MakuVehicleType } from "../models/maku.model";
 
@@ -76,6 +77,27 @@ class MakuService {
 			throw new HandleException(error.status, error.message);
 		}
   }
+
+
+  public async createVehicleType(makuVehicleType:any){
+    try {
+const model =new MakuVehicleType(makuVehicleType)
+		
+
+        // if(!vehicleType){
+        // 	throw new HandleException(
+        //     STATUS_CODES.NOT_FOUND,
+        //     "Vechicle type not found"
+        //   );
+        // }
+        return model.save();
+
+      
+    } catch (error: any) {
+			throw new HandleException(error.status, error.message);
+		}
+  }
+
 
   async findNearestDrivers(
     pickUpCoordinates: [number, number],

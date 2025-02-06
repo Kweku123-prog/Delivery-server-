@@ -11,6 +11,7 @@ class MakuRoutes {
   public initializeRoutes() {
     this.router.route('/types').get(makuController.getVehicleTypes),
     this.router.route('/types/:id').put(makuController.updateVehicleTypes),
+    this.router.route('/types/create').post(makuController.createVehicleType),
     this.router.route('/types/:id').get(makuController.getVechicleTypeById)
     // this.router.use(jwtUtils.verifyTokenMiddleware)
     this.router.route('/:tripId').get(makuController.getTripDetails)
